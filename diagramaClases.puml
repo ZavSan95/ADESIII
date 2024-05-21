@@ -1,0 +1,106 @@
+@startuml
+
+class Usuario {
+    - id: int
+    - nombre: String
+    - email: String
+    - contraseña: String
+    - perfilVerificado: Boolean
+}
+
+class Profesor extends Usuario {
+    - especialidad: String
+    - formacionAcademica: String
+    - experiencia: String
+    - calificacion: Float
+    - reseñas: List<String>
+    + publicarCurso()
+    + obtenerInformacion(): String
+}
+
+class Estudiante extends Usuario {
+    - nivelEducativo: String
+    + buscarProfesor()
+    + calificarProfesor()
+    + programarSesion()
+}
+
+class EstudianteGestiona {
+    + verInformacion()
+    + modificarInformacion()
+    + eliminarCuenta()
+    + buscarProfesor()
+    + reservarTurno()
+    + cancelarTurno()
+    + calificarProfesor()
+    + comprarCurso()
+    + crearPosteoComunidad()
+    + crearPostulacionTutor()
+    + gestionarPerfil()
+    + visualizarHistorialTransacciones()
+    + contactarSoporteTecnico()
+    + gestionarPreferenciasComunicacion()
+    + recuperarContraseñaOlvidada()
+}
+
+class ProfesorGestiona {
+    + verInformacion()
+    + modificarInformacion()
+    + eliminarCuenta()
+    + cargarFormacionAcademica()
+    + calificarAlumno()
+    + subirCurso()
+    + solicitarVerificacionPerfil()
+    + programarSesionTutoria()
+    + visualizarEstadisticasDesempeño()
+    + generarReporteActividad()
+    + solicitarSoporteTecnico()
+    + generarActividadComunitaria()
+}
+
+class Curso {
+    - titulo: String
+    - descripcion: String
+    - precio: Float
+    + obtenerInformacion(): String
+}
+
+class Reserva {
+    - id: int
+    - fecha: Date
+    - hora: Time
+    - duracion: int
+    + confirmar()
+    + cancelar()
+}
+
+class Comunidad {
+    - ejerciciosResueltos: List<String>
+    - materialesEstudio: List<String>
+    + contribuirEjercicios()
+    + contribuirMaterialEstudio()
+}
+
+class Publicidad {
+    - id: int
+    - tipo: String
+    - fechaCaducidad: Date
+    - alcance: String
+    + mostrarAnuncio()
+}
+
+class Suscripcion {
+    - tarifa: Float
+    + obtenerBeneficios(): String
+}
+
+Profesor "1" -- "1" ProfesorGestiona
+Profesor "1" -- "0..1" Curso
+Profesor "1" -- "n" Reserva
+Profesor "1" -- "0..n" Publicidad
+Estudiante "1" -- "1" EstudianteGestiona
+Estudiante "1" -- "n" Reserva
+Estudiante "1" -- "n" Comunidad
+Estudiante "1" -- "0..1" Suscripcion
+
+@enduml
