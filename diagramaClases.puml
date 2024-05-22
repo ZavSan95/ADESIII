@@ -59,6 +59,7 @@ class ProfesorGestiona {
 }
 
 class Curso {
+    -id: int
     - titulo: String
     - descripcion: String
     - precio: Float
@@ -75,10 +76,38 @@ class Reserva {
 }
 
 class Comunidad {
-    - ejerciciosResueltos: List<String>
-    - materialesEstudio: List<String>
+    -id: int
+    -contenido: List<Posteo>
     + contribuirEjercicios()
     + contribuirMaterialEstudio()
+}
+
+class Posteo {
+    - id: int
+    - contenido: String
+}
+
+class CorreoElectronico {
+    - id: int
+    - direccion: String
+    - contenido: String
+}
+
+class Pago{
+
+    -id: int
+    -monto: Float
+    -fecha: Date
+
+}
+
+class TicketST{
+
+    -id: int
+    -fecha: Date
+    -tipo: String
+    -estado: String
+    -descripcion: String
 }
 
 class Publicidad {
@@ -90,6 +119,9 @@ class Publicidad {
 }
 
 class Suscripcion {
+    -id: int
+    -fechaVencimiento: Date
+    -renovAuto: Boolean
     - tarifa: Float
     + obtenerBeneficios(): String
 }
@@ -98,9 +130,15 @@ Profesor "1" -- "1" ProfesorGestiona
 Profesor "1" -- "0..1" Curso
 Profesor "1" -- "n" Reserva
 Profesor "1" -- "0..n" Publicidad
+Profesor "1" -- "0..n" Comunidad
 Estudiante "1" -- "1" EstudianteGestiona
 Estudiante "1" -- "n" Reserva
-Estudiante "1" -- "n" Comunidad
+Estudiante "1" -- "0..n" Comunidad
 Estudiante "1" -- "0..1" Suscripcion
+Usuario "1" -- "n" CorreoElectronico
+Usuario "1" -- "n" Pago
+Usuario "1" -- "n" TicketST
+Comunidad "1" -- "n" Posteo
+
 
 @enduml
