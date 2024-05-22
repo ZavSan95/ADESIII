@@ -13,7 +13,7 @@ class Profesor extends Usuario {
     - formacionAcademica: String
     - experiencia: String
     - calificacion: Float
-    - reseñas: List<String>
+    - reseñas: List<Reseña>
     + publicarCurso()
     + obtenerInformacion(): String
 }
@@ -75,6 +75,11 @@ class Reserva {
     + cancelar()
 }
 
+class Reseña {
+    -id: int
+    -contenido: String
+}
+
 class Posteo {
     - id: int
     - contenido: String
@@ -127,12 +132,13 @@ class Suscripcion {
 }
 
 Profesor "1" *-- "1" ProfesorGestiona
-Profesor "1" -- "0..1" Curso
-Profesor "1" -- "n" Reserva
+Profesor "1" -- "0..n" Curso
+Profesor "1" *-- "n" Reserva
+Profesor "1" -- "n" Reseña
 Profesor "1" -- "0..n" Publicidad
 Profesor "1" -- "0..n" Comunidad
 Estudiante "1" *-- "1" EstudianteGestiona
-Estudiante "1" -- "n" Reserva
+Estudiante "1" *-- "n" Reserva
 Estudiante "1" -- "0..n" Comunidad
 Estudiante "1" -- "0..1" Suscripcion
 Usuario "1" -- "n" CorreoElectronico
