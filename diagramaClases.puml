@@ -75,16 +75,16 @@ class Reserva {
     + cancelar()
 }
 
+class Posteo {
+    - id: int
+    - contenido: String
+}
+
 class Comunidad {
     -id: int
     -contenido: List<Posteo>
     + contribuirEjercicios()
     + contribuirMaterialEstudio()
-}
-
-class Posteo {
-    - id: int
-    - contenido: String
 }
 
 class CorreoElectronico {
@@ -126,12 +126,12 @@ class Suscripcion {
     + obtenerBeneficios(): String
 }
 
-Profesor "1" -- "1" ProfesorGestiona
+Profesor "1" *-- "1" ProfesorGestiona
 Profesor "1" -- "0..1" Curso
 Profesor "1" -- "n" Reserva
 Profesor "1" -- "0..n" Publicidad
 Profesor "1" -- "0..n" Comunidad
-Estudiante "1" -- "1" EstudianteGestiona
+Estudiante "1" *-- "1" EstudianteGestiona
 Estudiante "1" -- "n" Reserva
 Estudiante "1" -- "0..n" Comunidad
 Estudiante "1" -- "0..1" Suscripcion
